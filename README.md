@@ -1,9 +1,8 @@
 # Telegram File Explorer for Android
 
-A read-only viewer for a personal file library kept in a **private Telegram channel**.
-The phone app streams, opens and downloads those files, and keeps the desktop app's
-folders, tags, collections, stars and PIN. Uploads are disabled by design — use the
-[desktop app](https://github.com/14Som/telegram-file-bot-v2) to add files.
+An app for a personal file library kept in a **private Telegram channel**. The phone
+app browses, streams, opens, downloads and uploads those files, and keeps the desktop
+app's folders, tags, collections, stars and PIN.
 
 The same Python backend that runs on the PC runs inside the APK (Chaquopy), so there
 is no server to host: the phone talks to Telegram directly over your own account.
@@ -11,7 +10,7 @@ is no server to host: the phone talks to Telegram directly over your own account
 ## Download
 
 Get the APK from [Releases](../../releases/latest):
-**`TelegramFileExplorer-Android-3.11.3.apk`**
+**`TelegramFileExplorer-Android-3.13.8.apk`**
 
 - Android 7.0 (API 24) or newer, **arm64** phone (an x86_64 emulator build is included
   in the same APK).
@@ -40,13 +39,21 @@ Get the APK from [Releases](../../releases/latest):
   contents, search, bookmarks, highlights and notes, themes and read-aloud.
 - **Play video and audio** — libVLC plays MKV, HEVC and everything else natively, with
   embedded and sidecar subtitles (including a `Subs` folder), audio-track switching,
-  playback speed, online subtitle search, PiP, screen lock and fit-to-screen.
+  playback speed, online subtitle search, PiP, screen lock and fit-to-screen. Playback
+  starts before a download finishes.
 - **3D models** — STL, OBJ, PLY and 3MF in an orbit/zoom viewer.
 - **Images** — zoom, pan and slideshow.
+- **Uploads** — pick one or more files; they are saved into the folder you are
+  browsing (up to 2 GB per file). Larger files need the desktop app, which splits
+  them into parts.
 - **Downloads** — saved to **Downloads/Telegram Files** through Android's download
-  manager. Split part files are joined automatically. A downloads bar above the tabs
-  shows speed, size and progress, and can pause, resume, cancel, clear or open a
-  transfer. Multi-select downloads several files as one ZIP.
+  manager. Split part files are joined automatically. The transfers bar above the tabs
+  shows upload and download speed, size and progress, and can pause, resume, cancel,
+  clear or open a download. Multi-select downloads several files as one ZIP.
+- **Library index** — when the app opens it restores the vault's latest snapshot, and
+  on close (Back) it saves a fresh one with "Saving the library to Telegram…". The
+  archive is staged in app-private storage and overwritten with zeros, then deleted,
+  right after it is unpacked or uploaded, so your Downloads folder never collects it.
 - **Top bar** — search, sync, select and a one-tap lock (shown when a PIN is set).
 - **More** — storage vault, sort, tags, collections, stars, hidden files, sync now,
   full re-scan, **clear cache**, **lock now**, remove/set PIN, About and sign out.
@@ -58,8 +65,8 @@ Get the APK from [Releases](../../releases/latest):
 - The local API server used by the interface listens on `127.0.0.1` only.
 - The PIN is hashed and stored with the library. **Forgot PIN?** can reset it with a
   6-digit code sent to your own Saved Messages.
-- The app is read-only: there are no upload controls, and the backend rejects uploads
-  when running on Android.
+- Uploads go straight into your own channel. The app never deletes files, and library
+  snapshots are only managed from the desktop app.
 - Downloads are only written when you ask for them. **Clear cache** removes streaming
   and preview files and never touches your Telegram files, library or downloads.
 
@@ -67,39 +74,15 @@ Get the APK from [Releases](../../releases/latest):
 
 | Location | Contents |
 |---|---|
-| App-private storage | Telegram session, library index, settings, PIN, thumbnails, cache |
+| App-private storage | Telegram session, library index, settings, PIN, thumbnails, cache, staging for the index archive |
 | `Downloads/Telegram Files` | Completed downloads |
 | Your Telegram channel | The files themselves and the library snapshot |
 
 ## Version history
 
-- **3.11.3** — top bar: the duplicate hamburger is now a one-tap lock button;
-  More → **Clear cache**.
+- **3.13.8** — uploads, library index restored on open and saved on close, faster
+  transfers, playback before the download finishes.
+- **3.12.2** — star lookups use IAFD, then IMDb, then Wikipedia.
+- **3.12.1** — star type tabs and portrait picker.
+- **3.11.3** — one-tap lock button; More → **Clear cache**.
 - **3.11.2** — downloads bar with pause, resume and cancel.
-- **3.11.0** — multi-select and ZIP downloads.
-- **3.10.0** — libVLC player with subtitles and audio tracks, 3D viewer, IMDb details.
-- **3.7.1** — desktop folder sync, read-only vault snapshots, long-name fixes.
-
-## Build from source
-
-The Android app lives in the main repository:
-[`android/` in telegram-file-bot-v2](https://github.com/14Som/telegram-file-bot-v2/tree/main/android).
-You need JDK 17, Android SDK 35 and Python 3.13:
-
-```bat
-set TFE_BUILD_PYTHON=C:\Path\To\Python313\python.exe
-cd android
-gradlew.bat assembleRelease
-```
-
-The signed APK is written to
-`android\app\build\outputs\apk\release\app-release.apk`. Signing reads
-`android/app/keystore.properties`, which is not published — a debug build works for
-testing but cannot replace the release APK without uninstalling it first.
-
-## Related
-
-- [Desktop app and storage bot](https://github.com/14Som/telegram-file-bot-v2) —
-  Windows Explorer, uploads, folders, stars and the bot on your server.
-- [Older v1 repository](https://github.com/14Som/telegram-file-explorer) — archived
-  version 1 builds.
