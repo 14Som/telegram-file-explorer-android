@@ -10,7 +10,7 @@ is no server to host: the phone talks to Telegram directly over your own account
 ## Download
 
 Get the APK from [Releases](../../releases/latest):
-**`TelegramFileExplorer-Android-3.13.8.apk`**
+**`TelegramFileExplorer-Android-3.13.31.apk`**
 
 - Android 7.0 (API 24) or newer, **arm64** phone (an x86_64 emulator build is included
   in the same APK).
@@ -80,6 +80,9 @@ Get the APK from [Releases](../../releases/latest):
 
 ## Version history
 
+- **3.13.31** — opens in seconds: the library restores from Telegram in the
+  background; vault picker on the PIN screen, batch rename, bulk stars, tag
+  manager, larger caches, VLC-style playback controls and PDF fixes.
 - **3.13.8** — uploads, library index restored on open and saved on close, faster
   transfers, playback before the download finishes.
 - **3.12.2** — star lookups use IAFD, then IMDb, then Wikipedia.
