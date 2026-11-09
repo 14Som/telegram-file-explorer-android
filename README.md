@@ -10,7 +10,7 @@ is no server to host: the phone talks to Telegram directly over your own account
 ## Download
 
 Get the APK from [Releases](../../releases/latest):
-**`TelegramFileExplorer-Android-3.13.33.apk`**
+**`TelegramFileExplorer-Android-3.13.34.apk`**
 
 - Android 7.0 (API 24) or newer, **arm64** phone (an x86_64 emulator build is included
   in the same APK).
@@ -80,6 +80,8 @@ Get the APK from [Releases](../../releases/latest):
 
 ## Version history
 
+- **3.13.34** — vault switching no longer stays blocked after a finished transfer;
+  folder delete removes the folder and everything inside.
 - **3.13.33** — deleting a folder removes the folder, every subfolder and all of
   their files from Telegram in one step, with a single Delete button.
 - **3.13.31** — opens in seconds: the library restores from Telegram in the
