@@ -10,7 +10,7 @@ is no server to host: the phone talks to Telegram directly over your own account
 ## Download
 
 Get the APK from [Releases](../../releases/latest):
-**`TelegramFileExplorer-Android-3.13.34.apk`**
+**`TelegramFileExplorer-Android-3.13.35.apk`**
 
 - Android 7.0 (API 24) or newer, **arm64** phone (an x86_64 emulator build is included
   in the same APK).
@@ -79,6 +79,10 @@ Get the APK from [Releases](../../releases/latest):
 | Your Telegram channel | The files themselves and the library snapshot |
 
 ## Version history
+
+- **3.13.35** — uploads slow down instead of stalling: parallel files are
+  reduced when Telegram asks for a flood wait and restored afterwards, and a
+  stalled file is sent once more before it fails.
 
 - **3.13.34** — vault switching no longer stays blocked after a finished transfer;
   folder delete removes the folder and everything inside.
