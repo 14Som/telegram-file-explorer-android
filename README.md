@@ -10,7 +10,7 @@ is no server to host: the phone talks to Telegram directly over your own account
 ## Download
 
 Get the APK from [Releases](../../releases/latest):
-**`TelegramFileExplorer-Android-3.13.41.apk`**
+**`TelegramFileExplorer-Android-3.13.45.apk`**
 
 - Android 7.0 (API 24) or newer, **arm64** phone (an x86_64 emulator build is included
   in the same APK).
@@ -79,6 +79,13 @@ Get the APK from [Releases](../../releases/latest):
 | Your Telegram channel | The files themselves and the library snapshot |
 
 ## Version history
+
+- **3.13.45** — the folder view matches the desktop app: cards and the tree
+  show rolled-up file counts, the breadcrumb and subfolder panel appear while a
+  folder's files load, the Folders tab shows the real folder count, and empty
+  folders explain themselves. A slow request now retries on a fresh connection,
+  so a phone that slept no longer leaves a spinner. Custom thumbnails survive a
+  sync and a restore.
 
 - **3.13.41** — thumbnail picker rebuilt: 18 frames arrive one by one, tapping
   one opens nine closer moments, a frame can be kept before the rest finish,
